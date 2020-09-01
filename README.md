@@ -20,7 +20,7 @@ This repository uses multi-platform images via Docker manifests.  You do not nee
 ## Tags
 In addition to `latest`, this repository uses semantic versioned tags:
 * major version (ex `2`)
-* minor version( (ex: `2.0`)
+* minor version (ex: `2.0`)
 * patch version (ex: `2.0.0`)
 * release version (ex: `2.0.0.1`)
 
