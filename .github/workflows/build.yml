@@ -73,6 +73,7 @@ jobs:
             --tag "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm-v6" \
             .
           IMAGES+=( "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm-v6" )
+          sleep 1
 
           echo "Build arm-v7"
           docker build \
