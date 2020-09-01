@@ -34,7 +34,9 @@ jobs:
           MAJOR_SEMVER=$(printf "${RELEASE_SEMVER}" | cut -d '.' -f 1)
 
           # Print SEMVER variables for debugging purposes
-          env | grep SEMVER
+          printf "ENV VARS:"
+          printf "${FULL_VERSION}"
+          printf "${RELEASE_SEMVER}"
 
           declare -a IMAGES
 
