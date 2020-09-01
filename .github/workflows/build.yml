@@ -1,4 +1,4 @@
-name: publish
+name: build
 
 on:
   push:
@@ -42,7 +42,8 @@ jobs:
             --tag "${DOCKERHUB_REPO}:${MAJOR_SEMVER}-amd64" \
             --tag "${DOCKERHUB_REPO}:${MINOR_SEMVER}-amd64" \
             --tag "${DOCKERHUB_REPO}:${PATCH_SEMVER}-amd64" \
-            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-amd64"
+            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-amd64" \
+            .                                                             
           IMAGES+=( "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-amd64" )
 
           docker build \
@@ -53,7 +54,8 @@ jobs:
             --tag "${DOCKERHUB_REPO}:${MAJOR_SEMVER}-386" \
             --tag "${DOCKERHUB_REPO}:${MINOR_SEMVER}-386" \
             --tag "${DOCKERHUB_REPO}:${PATCH_SEMVER}-386" \
-            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-386"
+            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-386" \
+            .
           IMAGES+=( "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-386" )
 
           docker build \
@@ -64,7 +66,8 @@ jobs:
             --tag "${DOCKERHUB_REPO}:${MAJOR_SEMVER}-arm-v6" \
             --tag "${DOCKERHUB_REPO}:${MINOR_SEMVER}-arm-v6" \
             --tag "${DOCKERHUB_REPO}:${PATCH_SEMVER}-arm-v6" \
-            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-arm-v6"
+            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-arm-v6" \
+            .
           IMAGES+=( "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-arm-v6" )
 
           docker build \
@@ -75,7 +78,8 @@ jobs:
             --tag "${DOCKERHUB_REPO}:${MAJOR_SEMVER}-arm-v7" \
             --tag "${DOCKERHUB_REPO}:${MINOR_SEMVER}-arm-v7" \
             --tag "${DOCKERHUB_REPO}:${PATCH_SEMVER}-arm-v7" \
-            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-arm-v7"
+            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-arm-v7" \
+            .
           IMAGES+=( "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-arm-v7" )
 
           docker build \
@@ -86,7 +90,8 @@ jobs:
             --tag "${DOCKERHUB_REPO}:${MAJOR_SEMVER}-arm64-v8" \
             --tag "${DOCKERHUB_REPO}:${MINOR_SEMVER}-arm64-v8" \
             --tag "${DOCKERHUB_REPO}:${PATCH_SEMVER}-arm64-v8" \
-            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-arm64-v8"
+            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-arm64-v8" \
+            .
           IMAGES+=( "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-arm64-v8" )
 
           docker build \
@@ -97,7 +102,8 @@ jobs:
             --tag "${DOCKERHUB_REPO}:${MAJOR_SEMVER}-ppc64le" \
             --tag "${DOCKERHUB_REPO}:${MINOR_SEMVER}-ppc64le" \
             --tag "${DOCKERHUB_REPO}:${PATCH_SEMVER}-ppc64le" \
-            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-ppc64le"
+            --tag "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-ppc64le" \
+            .
           IMAGES+=( "${DOCKERHUB_REPO}:${RELEASE_SEMVER}-ppc64le" )
 
           # Push all images to dockerhub
