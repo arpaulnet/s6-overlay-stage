@@ -1,5 +1,5 @@
 # s6-overlay-stage
-[s6-overlay](https://github.com/just-containers/s6-overlay) is a series of init scripts and utilities to ease creating Docker images using [s6](http://skarnet.org/software/s6/overview.html) as a process supervisor.  The images within this repository contain a root filesystem with _only_ s6-overaly within.  This repository is not intended to be used directly, but rather consumed in other Dockerfiles.  For example:
+[s6-overlay](https://github.com/just-containers/s6-overlay) is a series of init scripts and utilities to ease creating Docker images using [s6](http://skarnet.org/software/s6/overview.html) as a process supervisor.  The images within this repository contain a root filesystem with _only_ s6-overlay within.  This repository is not intended to be used directly, but rather consumed in other Dockerfiles.  It is intended to be a multi-platform, reusable, build stage.  Example usage:
 ```
 FROM ...
 COPY --from=arpaulnet/s6-overlay-stage:2.0.0.1 / /
