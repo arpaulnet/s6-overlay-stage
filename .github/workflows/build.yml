@@ -142,10 +142,10 @@ jobs:
 
           echo "Create manifest lists"
           docker manifest create "${DOCKERHUB_REPOSITORY}:latest" "${IMAGES[@]}"
-          docker manifest create "${DOCKERHUB_REPOSITORY}:$MAJOR_SEMVER}" "${IMAGES[@]}"
-          docker manifest create "${DOCKERHUB_REPOSITORY}:$MINOR_SEMVER}" "${IMAGES[@]}"
-          docker manifest create "${DOCKERHUB_REPOSITORY}:$PATCH_SEMVER}" "${IMAGES[@]}"
-          docker manifest create "${DOCKERHUB_REPOSITORY}:$RELEASE_SEMVER}" "${IMAGES[@]}"
+          docker manifest create "${DOCKERHUB_REPOSITORY}:${MAJOR_SEMVER}" "${IMAGES[@]}"
+          docker manifest create "${DOCKERHUB_REPOSITORY}:${MINOR_SEMVER}" "${IMAGES[@]}"
+          docker manifest create "${DOCKERHUB_REPOSITORY}:${PATCH_SEMVER}" "${IMAGES[@]}"
+          docker manifest create "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}" "${IMAGES[@]}"
 
           echo "Annotate manifest lists to add architecture variants that aren't picked up automatically"
           docker manifest annotate "${DOCKERHUB_REPOSITORY}:latest" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm-v6" --variant "v6"
