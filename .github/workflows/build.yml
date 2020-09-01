@@ -167,11 +167,11 @@ jobs:
           docker manifest annotate "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm64-v8" --variant "v8"
 
           echo "Push manifest lists & delete local copies"
-          docker manifest push --purge "${DOCKERHUB_REPOSITORY}:latest"
-          docker manifest push --purge "${DOCKERHUB_REPOSITORY}:${MAJOR_SEMVER}"
-          docker manifest push --purge "${DOCKERHUB_REPOSITORY}:${MINOR_SEMVER}"
-          docker manifest push --purge "${DOCKERHUB_REPOSITORY}:${PATCH_SEMVER}"
           docker manifest push --purge "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}"
+          docker manifest push --purge "${DOCKERHUB_REPOSITORY}:${PATCH_SEMVER}"
+          docker manifest push --purge "${DOCKERHUB_REPOSITORY}:${MINOR_SEMVER}"
+          docker manifest push --purge "${DOCKERHUB_REPOSITORY}:${MAJOR_SEMVER}"
+          docker manifest push --purge "${DOCKERHUB_REPOSITORY}:latest"
 
       - name: Update Dockerhub Description
         if: success()
