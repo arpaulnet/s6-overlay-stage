@@ -164,7 +164,7 @@ jobs:
           docker manifest annotate "${DOCKERHUB_REPOSITORY}:${MAJOR_SEMVER}" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm64-v8" --variant "v8"
           docker manifest annotate "${DOCKERHUB_REPOSITORY}:${MINOR_SEMVER}" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm64-v8" --variant "v8"
           docker manifest annotate "${DOCKERHUB_REPOSITORY}:${PATCH_SEMVER}" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm64-v8" --variant "v8"
-          docker manifest annotate "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm-v8" --variant "v8"
+          docker manifest annotate "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm64-v8" --variant "v8"
 
           echo "Push manifest lists & delete local copies"
           docker manifest pursh --purge "${DOCKERHUB_REPOSITORY}:latest"
