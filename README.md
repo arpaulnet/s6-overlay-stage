@@ -19,7 +19,9 @@ This repository uses multi-platform images via Docker manifests.  You do not nee
 
 ## Tags
 In addition to `latest`, this repository uses semantic versioned tags:
-* release version (ex: `2.0.0.1`)
-* patch version (ex: `2.0.0`)
-* minor version( (ex: `2.0`)
 * major version (ex `2`)
+* minor version( (ex: `2.0`)
+* patch version (ex: `2.0.0`)
+* release version (ex: `2.0.0.1`)
+
+These tags will be updated monthly from the latest release of s6-overlay.
