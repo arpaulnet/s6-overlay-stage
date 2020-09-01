@@ -35,6 +35,7 @@ jobs:
 
           declare -a IMAGES
 
+          echo "Build amd64"
           docker build \
             --platform linux/amd64 \
             --build-arg "S6_VERSION=${FULL_VERSION}" \
@@ -47,6 +48,7 @@ jobs:
             .                                                             
           IMAGES+=( "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-amd64" )
 
+          echo "Build 386"
           docker build \
             --platform linux/386 \
             --build-arg "S6_VERSION=${FULL_VERSION}" \
@@ -59,6 +61,7 @@ jobs:
             .
           IMAGES+=( "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-386" )
 
+          echo "Build arm-v6"
           docker build \
             --platform linux/arm/v6 \
             --build-arg "S6_VERSION=${FULL_VERSION}" \
@@ -71,6 +74,7 @@ jobs:
             .
           IMAGES+=( "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm-v6" )
 
+          echo "Build arm-v7"
           docker build \
             --platform linux/arm/v7 \ 
             --build-arg "S6_VERSION=${FULL_VERSION}" \
@@ -83,6 +87,7 @@ jobs:
             .
           IMAGES+=( "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm-v7" )
 
+          echo "Build arm64-v8"
           docker build \
             --platform linux/arm64/v8 \
             --build-arg "S6_VERSION=${FULL_VERSION}" \
@@ -95,6 +100,7 @@ jobs:
             .
           IMAGES+=( "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm64-v8" )
 
+          echo "Build ppc64le"
           docker build \
             --platform linux/ppc64le \
             --build-arg "S6_VERSION=${FULL_VERSION}" \
@@ -107,17 +113,17 @@ jobs:
             .
           IMAGES+=( "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-ppc64le" )
 
-          # Push all images to dockerhub
+          echo "Push images to DockerHub"
           docker push "${DOCKERHUB_REPOSITORY}"
 
-          # Create manifest lists
+          echo "Create manifest lists"
           docker manifest create "${DOCKERHUB_REPOSITORY}:latest" "${IMAGES[@]}"
           docker manifest create "${DOCKERHUB_REPOSITORY}:$MAJOR_SEMVER}" "${IMAGES[@]}"
           docker manifest create "${DOCKERHUB_REPOSITORY}:$MINOR_SEMVER}" "${IMAGES[@]}"
           docker manifest create "${DOCKERHUB_REPOSITORY}:$PATCH_SEMVER}" "${IMAGES[@]}"
           docker manifest create "${DOCKERHUB_REPOSITORY}:$RELEASE_SEMVER}" "${IMAGES[@]}"
 
-          # Annotate to add architecture variants that aren't picked up automatically
+          echo "Annotate manifest lists to add architecture variants that aren't picked up automatically"
           docker manifest annotate "${DOCKERHUB_REPOSITORY}:latest" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm-v6" --variant "v6"
           docker manifest annotate "${DOCKERHUB_REPOSITORY}:${MAJOR_SEMVER}" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm-v6" --variant "v6"
           docker manifest annotate "${DOCKERHUB_REPOSITORY}:${MINOR_SEMVER}" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm-v6" --variant "v6"
@@ -136,7 +142,7 @@ jobs:
           docker manifest annotate "${DOCKERHUB_REPOSITORY}:${PATCH_SEMVER}" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm64-v8" --variant "v8"
           docker manifest annotate "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}" "${DOCKERHUB_REPOSITORY}:${RELEASE_SEMVER}-arm-v8" --variant "v8"
 
-          # Push manifest list & delete local copies
+          echo "Push manifest lists & delete local copies"
           docker manifest pursh --purge "${DOCKERHUB_REPOSITORY}:latest"
           docker manifest pursh --purge "${DOCKERHUB_REPOSITORY}:${MAJOR_SEMVER}"
           docker manifest pursh --purge "${DOCKERHUB_REPOSITORY}:${MINOR_SEMVER}"
