@@ -33,6 +33,9 @@ jobs:
           MINOR_SEMVER=$(printf "${RELEASE_SEMVER}" | cut -d '.' -f 1-2)
           MAJOR_SEMVER=$(printf "${RELEASE_SEMVER}" | cut -d '.' -f 1)
 
+          # Print SEMVER variables for debugging purposes
+          env | grep SEMVER
+
           declare -a IMAGES
 
           docker build \
