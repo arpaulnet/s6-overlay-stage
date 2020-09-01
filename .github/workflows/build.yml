@@ -33,6 +33,7 @@ jobs:
           MAJOR_SEMVER=$(printf "${RELEASE_SEMVER}" | cut -d '.' -f 1)
 
           declare -a IMAGES
+          cat Dockerfile
 
           docker build \
             --platform linux/amd64
