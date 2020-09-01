@@ -28,15 +28,10 @@ jobs:
       - name: Build
         run: |
           FULL_VERSION=$(curl https://api.github.com/repos/just-containers/s6-overlay/releases/latest | jq -r '.tag_name')
-          RELEASE_SEMVER=$(printf "${S6_VERSION}" | tr -d [vV])
+          RELEASE_SEMVER=$(printf "${FULL_VERSION}" | tr -d [vV])
           PATCH_SEMVER=$(printf "${RELEASE_SEMVER}" | cut -d '.' -f 1-3)
           MINOR_SEMVER=$(printf "${RELEASE_SEMVER}" | cut -d '.' -f 1-2)
           MAJOR_SEMVER=$(printf "${RELEASE_SEMVER}" | cut -d '.' -f 1)
-
-          # Print SEMVER variables for debugging purposes
-          printf "ENV VARS:"
-          printf "${FULL_VERSION}"
-          printf "${RELEASE_SEMVER}"
 
           declare -a IMAGES
 
