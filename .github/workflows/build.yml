@@ -47,7 +47,7 @@ jobs:
           echo "Build amd64"
           docker buildx build \
             --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
             --output "type=image,push=true" \
             --platform linux/amd64 \
             --build-arg "S6_VERSION=${FULL_VERSION}" \
@@ -63,7 +63,7 @@ jobs:
           echo "Build 386"
           docker buildx build \
             --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
             --output "type=image,push=true" \
             --platform linux/386 \
             --build-arg "S6_VERSION=${FULL_VERSION}" \
@@ -79,7 +79,7 @@ jobs:
           echo "Build arm-v6"
           docker buildx build \
             --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
             --output "type=image,push=true" \
             --platform linux/arm/v6 \
             --build-arg "S6_VERSION=${FULL_VERSION}" \
@@ -95,7 +95,7 @@ jobs:
           echo "Build arm-v7"
           docker buildx build \
             --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
             --output "type=image,push=true" \
             --platform linux/arm/v7 \
             --build-arg "S6_VERSION=${FULL_VERSION}" \
@@ -111,7 +111,7 @@ jobs:
           echo "Build arm64-v8"
           docker buildx build \
             --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
             --output "type=image,push=true" \
             --platform linux/arm64/v8 \
             --build-arg "S6_VERSION=${FULL_VERSION}" \
@@ -127,7 +127,7 @@ jobs:
           echo "Build ppc64le"
           docker buildx build \
             --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
             --output "type=image,push=true" \
             --platform linux/ppc64le \
             --build-arg "S6_VERSION=${FULL_VERSION}" \
